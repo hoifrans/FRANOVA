@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FRANOVA — Where New Beginnings Meet Extraordinary Drives</title>
 <meta name="description" content="FRANOVA. New light, new beginning. A reimagined collection of extraordinary automobiles.">
- 
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,900;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
- 
+
 <style>
 /* ==========================================================================
    FRANOVA — design tokens
@@ -17,22 +17,22 @@
    Type: Playfair Display (display) + Inter (body) + JetBrains Mono (data)
    Signature motif: blueprint line-art vehicles + constellation star nodes
    ========================================================================== */
- 
+
 :root{
   --obsidian:       #08090B;
   --panel:          #121317;
   --panel-alt:      #191b20;
   --hairline:       rgba(200,169,107,0.16);
   --hairline-strong:rgba(200,169,107,0.32);
- 
+
   --gold:           #c8a96b;
   --gold-bright:    #eecf9c;
   --gold-dim:       #6e5a3a;
- 
+
   --ivory:          #f4efe4;
   --text-onDark:    #efe9db;
   --text-onDark-mute: #a29a89;
- 
+
   --bg:             var(--obsidian);
   --bg-panel:       var(--panel);
   --bg-panel-alt:   var(--panel-alt);
@@ -43,24 +43,24 @@
   --line:           var(--hairline);
   --line-strong:    var(--hairline-strong);
   --shadow-glow:    0 0 60px rgba(200,169,107,0.18);
- 
+
   --font-display: 'Playfair Display', 'Iowan Old Style', Georgia, serif;
   --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
- 
+
   --container: min(1240px, 92vw);
   --radius-sm: 4px;
   --radius-md: 10px;
   --radius-lg: 22px;
- 
+
   --ease: cubic-bezier(.22,.61,.36,1);
   --dur-fast: .22s;
   --dur-mid: .5s;
   --dur-slow: .9s;
- 
+
   color-scheme: dark;
 }
- 
+
 html[data-theme="light"]{
   --bg:             var(--ivory);
   --bg-panel:       #fffdf8;
@@ -74,7 +74,7 @@ html[data-theme="light"]{
   --shadow-glow:    0 0 50px rgba(154,111,47,0.14);
   color-scheme: light;
 }
- 
+
 *, *::before, *::after{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
 body{
@@ -94,15 +94,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 input, select{ font: inherit; color: inherit; }
 h1,h2,h3,h4,p{ margin: 0; }
 svg{ display: block; }
- 
+
 ::selection{ background: var(--gold); color: var(--obsidian); }
- 
+
 :focus-visible{
   outline: 2px solid var(--accent-bright);
   outline-offset: 3px;
   border-radius: 2px;
 }
- 
+
 @media (prefers-reduced-motion: reduce){
   *, *::before, *::after{
     animation-duration: .001ms !important;
@@ -111,7 +111,7 @@ svg{ display: block; }
     scroll-behavior: auto !important;
   }
 }
- 
+
 .starfield{
   position: fixed;
   inset: 0;
@@ -138,7 +138,7 @@ svg{ display: block; }
   to{ transform: translateY(-24px); }
 }
 html[data-theme="light"] .star{ opacity: 0 !important; }
- 
+
 .site-header{
   position: sticky;
   top: 0;
@@ -159,7 +159,7 @@ html[data-theme="light"] .star{ opacity: 0 !important; }
   transition: padding var(--dur-mid) var(--ease);
 }
 .site-header.is-condensed .header-top{ padding-top: 12px; padding-bottom: 12px; }
- 
+
 .brand{
   display: inline-flex;
   align-items: center;
@@ -169,9 +169,14 @@ html[data-theme="light"] .star{ opacity: 0 !important; }
   width: 40px;
   height: 40px;
   border-radius: 8px;
+  object-fit: contain;
   filter: drop-shadow(0 0 10px rgba(200,169,107,.35));
   transition: filter var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
+.brand-mark--footer{ width: 36px; height: 36px; }
+.brand-mark--light{ display: none; }
+html[data-theme="light"] .brand-mark--dark{ display: none; }
+html[data-theme="light"] .brand-mark--light{ display: block; }
 .brand:hover .brand-mark{
   filter: drop-shadow(0 0 16px rgba(200,169,107,.6));
   transform: rotate(-4deg) scale(1.04);
@@ -183,13 +188,13 @@ html[data-theme="light"] .star{ opacity: 0 !important; }
   letter-spacing: 0.14em;
   color: var(--text);
 }
- 
+
 .header-controls{
   display: flex;
   align-items: center;
   gap: 14px;
 }
- 
+
 .theme-toggle-track{
   display: inline-flex;
   align-items: center;
@@ -218,7 +223,7 @@ html[data-theme="light"] .theme-toggle-thumb{ transform: translateX(24px); }
 .theme-toggle-thumb svg circle{ fill: var(--obsidian); stroke: none; }
 .theme-toggle-thumb svg line{ stroke: var(--obsidian); stroke-width: 1.6; stroke-linecap: round; opacity: 0; transition: opacity var(--dur-fast); }
 html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
- 
+
 .nav-toggle{
   display: none;
   flex-direction: column;
@@ -236,7 +241,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 .nav-toggle[aria-expanded="true"] span:nth-child(1){ transform: translateY(6.5px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] span:nth-child(2){ opacity: 0; }
 .nav-toggle[aria-expanded="true"] span:nth-child(3){ transform: translateY(-6.5px) rotate(-45deg); }
- 
+
 .primary-nav{
   max-width: var(--container);
   margin: 0 auto;
@@ -268,7 +273,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   color: var(--accent-bright);
   font-weight: 600;
 }
- 
+
 .btn{
   position: relative;
   display: inline-flex;
@@ -301,7 +306,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 }
 .btn--primary:hover::before{ opacity: 1; }
 .btn--primary:hover{ box-shadow: 0 10px 36px -6px rgba(200,169,107,.85); transform: translateY(-2px); }
- 
+
 .btn--ghost{
   color: var(--text);
   border: 1px solid var(--line-strong);
@@ -309,7 +314,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 }
 .btn--ghost:hover{ border-color: var(--accent-bright); color: var(--accent-bright); box-shadow: 0 0 0 1px var(--accent-bright) inset; }
 .btn--wide{ width: 100%; }
- 
+
 .hero{
   position: relative;
   min-height: 100svh;
@@ -346,7 +351,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   filter: blur(10px);
   pointer-events: none;
 }
- 
+
 .hero-content{
   position: relative;
   z-index: 2;
@@ -370,7 +375,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 }
 .eyebrow-mark{ display: inline-block; animation: spin-slow 8s linear infinite; }
 @keyframes spin-slow{ to{ transform: rotate(360deg); } }
- 
+
 .hero-title{
   font-family: var(--font-display);
   font-weight: 700;
@@ -408,7 +413,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   from{ opacity: 0; transform: translateY(18px); }
   to{ opacity: 1; transform: translateY(0); }
 }
- 
+
 .hero-stage{
   position: relative;
   z-index: 2;
@@ -466,7 +471,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   letter-spacing: 0;
   text-transform: none;
 }
- 
+
 .hero-stage-controls{
   display: flex;
   align-items: center;
@@ -495,7 +500,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   transition: background var(--dur-fast), transform var(--dur-fast), border-color var(--dur-fast);
 }
 .slide-dot.is-active{ background: var(--accent-bright); border-color: var(--accent-bright); transform: scale(1.3); box-shadow: 0 0 8px rgba(200,169,107,.7); }
- 
+
 .scroll-cue{
   position: relative;
   z-index: 2;
@@ -510,7 +515,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 .scroll-cue-star{ animation: pulse-star 2.4s ease-in-out infinite; font-size: 13px; color: var(--accent-bright); }
 .scroll-cue-line{ width: 1px; height: 26px; background: linear-gradient(var(--accent-bright), transparent); }
 @keyframes pulse-star{ 0%,100%{ opacity: .4; transform: translateY(0);} 50%{ opacity: 1; transform: translateY(4px);} }
- 
+
 main > section{
   position: relative;
   z-index: 1;
@@ -541,15 +546,21 @@ main > section{
   max-width: 50ch;
   font-size: 16px;
 }
- 
+
 .reveal{
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .8s var(--ease), transform .8s var(--ease);
 }
 .reveal.is-visible{ opacity: 1; transform: translateY(0); }
- 
-.story{ background: var(--bg-panel); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+.story{
+  background:
+    linear-gradient(color-mix(in srgb, var(--bg-panel) 82%, transparent), color-mix(in srgb, var(--bg-panel) 90%, transparent)),
+    url('storyBG.jpg') center/cover no-repeat;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
 .story-inner{ max-width: 780px; margin: 0 auto; padding: 0 20px; text-align: center; }
 .story-quote{
   font-family: var(--font-display);
@@ -563,7 +574,7 @@ main > section{
 .story-divider span:not(.story-divider-star){ flex: 1; height: 1px; background: var(--line-strong); }
 .story-divider-star{ color: var(--accent-bright); font-size: 13px; }
 .story-body{ color: var(--text-mute); font-size: 16px; }
- 
+
 .model-grid{
   max-width: var(--container);
   margin: 0 auto;
@@ -599,7 +610,7 @@ main > section{
   pointer-events: none;
 }
 .model-card:hover::before{ opacity: 1; }
- 
+
 .model-card-top{
   display: flex;
   align-items: center;
@@ -617,7 +628,7 @@ main > section{
   border-radius: 999px;
 }
 .model-index{ font-family: var(--font-mono); font-size: 11px; color: var(--text-mute); }
- 
+
 .model-name{
   font-family: var(--font-display);
   font-weight: 700;
@@ -625,7 +636,7 @@ main > section{
   margin-top: 10px;
 }
 .model-class{ color: var(--text-mute); font-size: 13.5px; margin-top: 2px; }
- 
+
 .blueprint-wrap{
   position: relative;
   margin: 18px -6px 6px;
@@ -664,7 +675,7 @@ main > section{
 }
 .model-card.is-visible .blueprint-svg .node{ opacity: 1; animation: node-pulse 2.6s ease-in-out 2s infinite; }
 @keyframes node-pulse{ 0%,100%{ filter: drop-shadow(0 0 0 rgba(238,207,156,0)); } 50%{ filter: drop-shadow(0 0 6px rgba(238,207,156,.9)); } }
- 
+
 .spec-row{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -675,9 +686,9 @@ main > section{
 .spec{ border-top: 1px solid var(--line); padding-top: 10px; }
 .spec-value{ font-size: 17px; color: var(--text); }
 .spec-label{ font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-mute); margin-top: 3px; }
- 
+
 .model-desc{ color: var(--text-mute); font-size: 14.5px; margin-bottom: 20px; }
- 
+
 .model-cta{
   display: inline-flex;
   align-items: center;
@@ -693,7 +704,12 @@ main > section{
 }
 .model-cta svg{ width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
 .model-card:hover .model-cta{ color: var(--accent-bright); border-color: var(--accent-bright); gap: 12px; }
- 
+
+.experience{
+  background:
+    linear-gradient(color-mix(in srgb, var(--bg) 82%, transparent), color-mix(in srgb, var(--bg) 90%, transparent)),
+    url('ownershipBG.jpg') center/cover no-repeat;
+}
 .feature-grid{
   max-width: var(--container);
   margin: 0 auto;
@@ -723,7 +739,7 @@ main > section{
 }
 .feature-card h3{ font-family: var(--font-display); font-size: 20px; margin-bottom: 8px; }
 .feature-card p{ color: var(--text-mute); font-size: 14.5px; }
- 
+
 .contact-card{
   max-width: 640px;
   margin: 0 auto;
@@ -770,7 +786,7 @@ main > section{
   color: var(--text);
   word-break: break-word;
 }
- 
+
 .about-card{
   max-width: 640px;
   margin: 0 auto;
@@ -828,7 +844,7 @@ main > section{
   line-height: 1.75;
 }
 .about-bio p + p{ margin-top: 14px; }
- 
+
 .inquire{
   position: relative;
   background: linear-gradient(155deg, var(--gold-bright), var(--gold) 55%, var(--gold-dim));
@@ -849,7 +865,7 @@ main > section{
   color: var(--obsidian);
 }
 .inquire-sub{ margin-top: 16px; color: rgba(8,9,11,.72); font-size: 16px; }
- 
+
 .inquire-form{
   margin-top: 40px;
   display: grid;
@@ -893,7 +909,7 @@ main > section{
   transition: opacity var(--dur-fast) var(--ease);
 }
 .form-status.is-visible{ opacity: 1; }
- 
+
 .site-footer{
   border-top: 1px solid var(--line);
   padding: 60px 0 30px;
@@ -938,7 +954,7 @@ main > section{
   font-size: 12.5px;
   color: var(--text-mute);
 }
- 
+
 .cursor-glow{
   position: fixed;
   top: 0; left: 0;
@@ -956,7 +972,7 @@ main > section{
 @media (hover: none), (pointer: coarse){
   .cursor-glow{ display: none; }
 }
- 
+
 @media (max-width: 860px){
   .nav-toggle{ display: flex; }
   .primary-nav{
@@ -978,7 +994,7 @@ main > section{
   .primary-nav.is-open{ transform: translateX(0); }
   .header-top{ padding-bottom: 22px; }
 }
- 
+
 @media (max-width: 640px){
   .hero{ min-height: auto; padding-top: 26px; }
   .hero-stage{ margin-top: 30px; }
@@ -989,19 +1005,17 @@ main > section{
 </style>
 </head>
 <body>
- 
+
 <div class="starfield" id="starfield" aria-hidden="true"></div>
- 
+
 <header class="site-header" id="siteHeader">
   <div class="header-top">
     <a class="brand" href="#top" aria-label="Franova home">
-      <svg class="brand-mark" viewBox="0 0 44 44" width="44" height="44" xmlns="http://www.w3.org/2000/svg">
-        <rect width="44" height="44" rx="8" fill="#08090B"/>
-        <path d="M22 6 L26.5 18.5 39 22 26.5 25.5 22 38 17.5 25.5 5 22 17.5 18.5Z" fill="#c8a96b"/>
-      </svg>
+      <img class="brand-mark brand-mark--dark" src="dark.png" alt="Franova">
+      <img class="brand-mark brand-mark--light" src="light.png" alt="Franova">
       <span class="brand-name">FRANOVA</span>
     </a>
- 
+
     <div class="header-controls">
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode" aria-pressed="false">
         <span class="theme-toggle-track">
@@ -1010,13 +1024,13 @@ main > section{
           </span>
         </span>
       </button>
- 
+
       <button class="nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primaryNav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
- 
+
   <nav class="primary-nav" id="primaryNav" aria-label="Primary">
     <a href="#top" class="nav-link">Home</a>
     <a href="#story" class="nav-link">Our Story</a>
@@ -1027,13 +1041,13 @@ main > section{
     <a href="#inquire" class="nav-link nav-link--cta">Book a Drive</a>
   </nav>
 </header>
- 
+
 <main id="top">
- 
+
   <section class="hero" id="hero">
     <div class="hero-grid" aria-hidden="true"></div>
     <div class="hero-glow" aria-hidden="true"></div>
- 
+
     <div class="hero-content">
       <p class="eyebrow"><span class="eyebrow-mark">✦</span> Francis&nbsp;+&nbsp;Nova</p>
       <h1 class="hero-title">
@@ -1053,10 +1067,10 @@ main > section{
         </a>
       </div>
     </div>
- 
+
     <div class="hero-stage" id="heroStage">
       <div class="hero-slides" id="heroSlides"></div>
- 
+
       <div class="hero-stage-controls">
         <button class="slide-btn slide-btn--prev" id="slidePrev" type="button" aria-label="Previous vehicle">
           <svg viewBox="0 0 24 24"><path d="M15 5 8 12l7 7"/></svg>
@@ -1067,13 +1081,13 @@ main > section{
         </button>
       </div>
     </div>
- 
+
     <a class="scroll-cue" href="#collection" aria-label="Scroll to collection">
       <span class="scroll-cue-star">✦</span>
       <span class="scroll-cue-line"></span>
     </a>
   </section>
- 
+
   <section class="story" id="story">
     <div class="story-inner reveal">
       <p class="section-eyebrow">The Origin</p>
@@ -1090,23 +1104,23 @@ main > section{
       </p>
     </div>
   </section>
- 
+
   <section class="collection" id="collection">
     <div class="section-head reveal">
       <p class="section-eyebrow">The Collection</p>
       <h2 class="section-title">Six silhouettes. One Nova.</h2>
       <p class="section-sub">Every class of extraordinary, re-engineered under the FRANOVA name.</p>
     </div>
- 
+
     <div class="model-grid" id="modelGrid"></div>
   </section>
- 
+
   <section class="experience" id="experience">
     <div class="section-head reveal">
       <p class="section-eyebrow">Ownership</p>
       <h2 class="section-title">A house, not just a badge.</h2>
     </div>
- 
+
     <div class="feature-grid">
       <article class="feature-card reveal">
         <div class="feature-icon" aria-hidden="true">
@@ -1115,7 +1129,7 @@ main > section{
         <h3>Bespoke Re-Engineering</h3>
         <p>Every chassis is re-tuned and re-badged by FRANOVA's own atelier — not a wrap, a rebuild.</p>
       </article>
- 
+
       <article class="feature-card reveal">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48"><path d="M6 34 12 18l10-4 10 4 6 16" /><circle cx="16" cy="36" r="4"/><circle cx="32" cy="36" r="4"/></svg>
@@ -1123,7 +1137,7 @@ main > section{
         <h3>White-Glove Delivery</h3>
         <p>Your vehicle arrives by private carrier with a personal handover — anywhere, on your schedule.</p>
       </article>
- 
+
       <article class="feature-card reveal">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48"><path d="M24 6 40 14v10c0 12-7 19-16 22-9-3-16-10-16-22V14Z"/><path d="M17 24l5 5 10-11"/></svg>
@@ -1131,7 +1145,7 @@ main > section{
         <h3>Certified Performance</h3>
         <p>Independently verified 0–60, top speed, and power figures — no marketing rounding.</p>
       </article>
- 
+
       <article class="feature-card reveal">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 48 48"><circle cx="24" cy="18" r="8"/><path d="M8 42c0-9 7-15 16-15s16 6 16 15"/></svg>
@@ -1141,14 +1155,14 @@ main > section{
       </article>
     </div>
   </section>
- 
+
   <section class="contact" id="contact">
     <div class="section-head reveal">
       <p class="section-eyebrow">Get In Touch</p>
       <h2 class="section-title">Contact Us</h2>
       <p class="section-sub">Reach out directly — our team responds personally to every inquiry.</p>
     </div>
- 
+
     <div class="contact-card reveal">
       <div class="contact-item">
         <span class="contact-icon" aria-hidden="true">
@@ -1170,13 +1184,13 @@ main > section{
       </div>
     </div>
   </section>
- 
+
   <section class="about" id="about">
     <div class="section-head reveal">
       <p class="section-eyebrow">The Founder</p>
       <h2 class="section-title">About Me</h2>
     </div>
- 
+
     <div class="about-card reveal">
       <div class="about-photo-wrap">
         <img class="about-photo" src="about-photo.jpg" alt="Francis Carl F. Dela Cruz" onerror="this.style.display='none'">
@@ -1202,14 +1216,14 @@ main > section{
       </div>
     </div>
   </section>
- 
+
   <section class="inquire" id="inquire">
     <div class="inquire-glow" aria-hidden="true"></div>
     <div class="inquire-inner reveal">
       <p class="section-eyebrow section-eyebrow--light">Begin Your Story</p>
       <h2 class="inquire-title">Your new beginning starts with one drive.</h2>
       <p class="inquire-sub">Tell us which silhouette speaks to you, and a FRANOVA advisor will reach out to arrange a private viewing.</p>
- 
+
       <form class="inquire-form" id="inquireForm" novalidate>
         <div class="field">
           <label for="fullName">Full name</label>
@@ -1232,21 +1246,19 @@ main > section{
       </form>
     </div>
   </section>
- 
+
 </main>
- 
+
 <footer class="site-footer">
   <div class="footer-top">
     <a class="brand brand--footer" href="#top">
-      <svg class="brand-mark" viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
-        <rect width="44" height="44" rx="8" fill="#08090B"/>
-        <path d="M22 6 L26.5 18.5 39 22 26.5 25.5 22 38 17.5 25.5 5 22 17.5 18.5Z" fill="#c8a96b"/>
-      </svg>
+      <img class="brand-mark brand-mark--dark brand-mark--footer" src="dark.png" alt="Franova">
+      <img class="brand-mark brand-mark--light brand-mark--footer" src="light.png" alt="Franova">
       <span class="brand-name">FRANOVA</span>
     </a>
     <p class="footer-motto">Where New Beginnings Meet Extraordinary Drives.</p>
   </div>
- 
+
   <nav class="footer-nav" aria-label="Footer">
     <a href="#top">Home</a>
     <a href="#story">Our Story</a>
@@ -1256,31 +1268,31 @@ main > section{
     <a href="#about">About Me</a>
     <a href="#inquire">Book a Drive</a>
   </nav>
- 
+
   <div class="footer-bottom">
     <p>&copy; <span id="year"></span> FRANOVA. All rights reserved.</p>
     <p class="footer-fine">Vehicle silhouettes are original FRANOVA renderings. Specifications shown for illustrative purposes.</p>
   </div>
 </footer>
- 
+
 <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
- 
+
 <script>
 (function () {
   "use strict";
- 
+
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var isCoarsePointer = window.matchMedia("(hover: none), (pointer: coarse)").matches;
- 
+
   var CAR_PATH =
     "M18,118 C18,104 30,90 52,86 L86,64 C108,47 138,36 172,33 L226,30 " +
     "C258,29 282,38 302,54 L328,68 C349,74 364,84 372,99 L372,118 " +
     "L339,118 C338,101 324,89 308,89 C292,89 279,101 277,118 " +
     "L141,118 C140,101 126,89 110,89 C94,89 81,101 79,118 Z";
- 
+
   var HOOD_LINE = "M86,64 C112,72 150,74 190,72";
   var CABIN_LINE = "M172,33 L184,64 M226,30 L246,64";
- 
+
   function blueprintSVG(nodePositions) {
     nodePositions = nodePositions || [
       [110, 89], [308, 89], [200, 31]
@@ -1302,7 +1314,7 @@ main > section{
       "</svg>"
     );
   }
- 
+
   var MODELS = [
     {
       name: "Franova Cosmos",
@@ -1359,10 +1371,10 @@ main > section{
       desc: "Three rows of luggage, one row of lap times. Air suspension tuned for gravel roads and apexes alike."
     }
   ];
- 
+
   var modelGrid = document.getElementById("modelGrid");
   var modelSelect = document.getElementById("modelInterest");
- 
+
   MODELS.forEach(function (m, i) {
     var card = document.createElement("article");
     card.className = "model-card reveal";
@@ -1385,24 +1397,24 @@ main > section{
         '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>' +
       "</a>";
     modelGrid.appendChild(card);
- 
+
     var opt = document.createElement("option");
     opt.value = m.name;
     opt.textContent = m.name + " — " + m.cls;
     modelSelect.appendChild(opt);
   });
- 
+
   modelGrid.addEventListener("click", function (e) {
     var link = e.target.closest(".model-cta");
     if (!link) return;
     var name = link.getAttribute("data-model");
     if (modelSelect && name) modelSelect.value = name;
   });
- 
+
   var heroSlidesEl = document.getElementById("heroSlides");
   var dotsEl = document.getElementById("slideDots");
   var HERO_SET = [MODELS[0], MODELS[1], MODELS[2], MODELS[3]];
- 
+
   HERO_SET.forEach(function (m, i) {
     var slide = document.createElement("div");
     slide.className = "hero-slide" + (i === 0 ? " is-active" : "");
@@ -1413,7 +1425,7 @@ main > section{
       blueprintSVG() +
       '<div class="hero-slide-caption">' + m.cls + '<strong>' + m.name + "</strong></div>";
     heroSlidesEl.appendChild(slide);
- 
+
     var dot = document.createElement("button");
     dot.className = "slide-dot" + (i === 0 ? " is-active" : "");
     dot.type = "button";
@@ -1422,13 +1434,13 @@ main > section{
     dot.setAttribute("data-index", i);
     dotsEl.appendChild(dot);
   });
- 
+
   var slides = Array.prototype.slice.call(heroSlidesEl.querySelectorAll(".hero-slide"));
   var dots = Array.prototype.slice.call(dotsEl.querySelectorAll(".slide-dot"));
   var current = 0;
   var AUTOPLAY_MS = 5200;
   var timer = null;
- 
+
   function goTo(index) {
     index = (index + slides.length) % slides.length;
     slides[current].classList.remove("is-active");
@@ -1437,10 +1449,10 @@ main > section{
     slides[current].classList.add("is-active");
     dots[current].classList.add("is-active");
   }
- 
+
   function next() { goTo(current + 1); }
   function prev() { goTo(current - 1); }
- 
+
   function startAutoplay() {
     if (reduceMotion) return;
     stopAutoplay();
@@ -1450,7 +1462,7 @@ main > section{
     if (timer) clearInterval(timer);
     timer = null;
   }
- 
+
   document.getElementById("slideNext").addEventListener("click", function () { next(); startAutoplay(); });
   document.getElementById("slidePrev").addEventListener("click", function () { prev(); startAutoplay(); });
   dotsEl.addEventListener("click", function (e) {
@@ -1459,13 +1471,13 @@ main > section{
     goTo(parseInt(dot.getAttribute("data-index"), 10));
     startAutoplay();
   });
- 
+
   var heroStage = document.getElementById("heroStage");
   heroStage.addEventListener("mouseenter", stopAutoplay);
   heroStage.addEventListener("mouseleave", startAutoplay);
   heroStage.addEventListener("focusin", stopAutoplay);
   heroStage.addEventListener("focusout", startAutoplay);
- 
+
   (function () {
     var startX = null;
     heroSlidesEl.addEventListener("touchstart", function (e) {
@@ -1480,19 +1492,19 @@ main > section{
       startAutoplay();
     }, { passive: true });
   })();
- 
+
   startAutoplay();
- 
+
   var root = document.documentElement;
   var themeToggle = document.getElementById("themeToggle");
   var STORAGE_KEY = "franova-theme";
- 
+
   function applyTheme(theme) {
     root.setAttribute("data-theme", theme);
     themeToggle.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
     try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
   }
- 
+
   (function initTheme() {
     var stored = null;
     try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
@@ -1503,12 +1515,12 @@ main > section{
       applyTheme(prefersLight ? "light" : "dark");
     }
   })();
- 
+
   themeToggle.addEventListener("click", function () {
     var nextTheme = root.getAttribute("data-theme") === "light" ? "dark" : "light";
     applyTheme(nextTheme);
   });
- 
+
   (function starfield() {
     var field = document.getElementById("starfield");
     var count = window.innerWidth < 640 ? 40 : 90;
@@ -1526,14 +1538,14 @@ main > section{
     }
     field.appendChild(frag);
   })();
- 
+
   var header = document.getElementById("siteHeader");
   function onScroll() {
     header.classList.toggle("is-condensed", window.scrollY > 40);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
- 
+
   var navToggle = document.getElementById("navToggle");
   var primaryNav = document.getElementById("primaryNav");
   navToggle.addEventListener("click", function () {
@@ -1547,7 +1559,7 @@ main > section{
       navToggle.setAttribute("aria-expanded", "false");
     }
   });
- 
+
   var revealEls = document.querySelectorAll(".reveal, .model-card");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(
@@ -1565,7 +1577,7 @@ main > section{
   } else {
     revealEls.forEach(function (el) { el.classList.add("is-visible"); });
   }
- 
+
   if (!isCoarsePointer && !reduceMotion) {
     document.addEventListener("mousemove", function (e) {
       var card = e.target.closest ? e.target.closest(".model-card") : null;
@@ -1587,7 +1599,7 @@ main > section{
       card.style.transform = "";
     });
   }
- 
+
   if (!isCoarsePointer && !reduceMotion) {
     var glow = document.getElementById("cursorGlow");
     var glowActive = false;
@@ -1600,7 +1612,7 @@ main > section{
       glowActive = false;
     });
   }
- 
+
   var form = document.getElementById("inquireForm");
   var status = document.getElementById("formStatus");
   form.addEventListener("submit", function (e) {
@@ -1615,7 +1627,7 @@ main > section{
     status.classList.add("is-visible");
     form.reset();
   });
- 
+
   document.getElementById("year").textContent = new Date().getFullYear();
 })();
 </script>
