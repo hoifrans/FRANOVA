@@ -426,21 +426,32 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
 .hero-slide{
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(20px, 5vw, 60px);
   opacity: 0;
   transform: scale(1.04);
   transition: opacity 1s var(--ease), transform 6s linear;
   pointer-events: none;
+  overflow: hidden;
 }
 .hero-slide.is-active{
   opacity: 1;
   transform: scale(1);
   pointer-events: auto;
 }
-.hero-slide.is-active .blueprint-svg{ animation: kenburns 9s var(--ease) forwards; }
+.hero-photo{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-slide.is-active .hero-photo{ animation: kenburns 9s var(--ease) forwards; }
+.hero-slide::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8,9,11,.88), rgba(8,9,11,0) 55%);
+  pointer-events: none;
+}
 @keyframes kenburns{
   from{ transform: scale(1) translate(0,0); }
   to{ transform: scale(1.05) translate(-1%, 0); }
@@ -449,6 +460,7 @@ html[data-theme="light"] .theme-toggle-thumb svg line{ opacity: 1; }
   position: absolute;
   left: clamp(18px,3vw,32px);
   bottom: clamp(16px,3vw,26px);
+  z-index: 2;
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: .1em;
@@ -634,10 +646,17 @@ main > section{
   position: relative;
   margin: 18px -6px 6px;
   border-radius: var(--radius-md);
+  overflow: hidden;
   background:
     linear-gradient(var(--line) 1px, transparent 1px) 0 0 / 20px 20px,
     linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0 / 20px 20px;
   border: 1px solid var(--line);
+}
+.model-photo{
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
 }
 .blueprint-svg{
   width: 100%;
@@ -1313,6 +1332,7 @@ main > section{
       name: "Franova Cosmos",
       cls: "Electric Hypercar",
       tag: "Flagship",
+      img: "Cosmos.jpg",
       zero60: "1.9s",
       top: "210 mph",
       power: "1,340 hp",
@@ -1322,6 +1342,7 @@ main > section{
       name: "Franova Comet",
       cls: "Hypercar",
       tag: "Limited",
+      img: "Comet.jpg",
       zero60: "2.4s",
       top: "217 mph",
       power: "1,020 hp",
@@ -1331,6 +1352,7 @@ main > section{
       name: "Franova Star",
       cls: "Supercar",
       tag: "Signature",
+      img: "Star.png",
       zero60: "3.1s",
       top: "199 mph",
       power: "640 hp",
@@ -1340,6 +1362,7 @@ main > section{
       name: "Franova Constellation",
       cls: "Muscle Car",
       tag: "Heritage",
+      img: "Constellation.png",
       zero60: "2.9s",
       top: "194 mph",
       power: "755 hp",
@@ -1349,6 +1372,7 @@ main > section{
       name: "Franova Meteor",
       cls: "Sports Car",
       tag: "Everyday",
+      img: "Meteor.jpg",
       zero60: "3.6s",
       top: "180 mph",
       power: "523 hp",
@@ -1358,6 +1382,7 @@ main > section{
       name: "Franova Galaxy",
       cls: "Super SUV",
       tag: "Family",
+      img: "Galaxy.jpg",
       zero60: "3.3s",
       top: "190 mph",
       power: "690 hp",
@@ -1378,7 +1403,7 @@ main > section{
       "</div>" +
       '<h3 class="model-name">' + m.name + "</h3>" +
       '<p class="model-class">' + m.cls + "</p>" +
-      '<div class="blueprint-wrap">' + blueprintSVG() + "</div>" +
+      '<div class="blueprint-wrap"><img class="model-photo" src="' + m.img + '" alt="' + m.name + '"></div>' +
       '<div class="spec-row">' +
         '<div class="spec"><div class="spec-value">' + m.zero60 + '</div><div class="spec-label">0&ndash;60 mph</div></div>' +
         '<div class="spec"><div class="spec-value">' + m.top + '</div><div class="spec-label">Top Speed</div></div>' +
@@ -1415,7 +1440,7 @@ main > section{
     slide.setAttribute("aria-roledescription", "slide");
     slide.setAttribute("aria-label", (i + 1) + " of " + HERO_SET.length + ": " + m.name);
     slide.innerHTML =
-      blueprintSVG() +
+      '<img class="hero-photo" src="' + m.img + '" alt="' + m.name + '">' +
       '<div class="hero-slide-caption">' + m.cls + '<strong>' + m.name + "</strong></div>";
     heroSlidesEl.appendChild(slide);
  
